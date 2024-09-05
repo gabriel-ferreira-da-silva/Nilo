@@ -2,7 +2,7 @@
 import React from 'react';
 import './ItemCard.css'; // Optional: for adding styles
 
-function Card({ title, description, price, imageUrl }) {
+function Card({ title, price, imageUrl }) {
   return (
     <div className="card">
       <img src={imageUrl} alt={title} className="card-image" />

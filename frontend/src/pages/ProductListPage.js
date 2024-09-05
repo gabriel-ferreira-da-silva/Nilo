@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllProducts } from '../services/ProductService';
 import ItemCard from '../component/comom/ItemCard/ItemCard'
 
-const ProductListPage = ({ productId }) => {
+const ProductListPage = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const ProductListPage = ({ productId }) => {
     };
 
     getAllProducts();
-  }, [productId]);
+  }, [1]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
