@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import ButtonGreen from '../comom/buttons/ButtonGreen';
+import './AddProduct.css'
 function AddProductPanel({onSubmit}) {
     const [formData, setFormData] = useState({
         name: '',
@@ -47,7 +47,7 @@ function AddProductPanel({onSubmit}) {
                 <label for="rateInput">Rate</label>
                 <input class="form-control" id="rateInput" placeholder="0.0" name="rate" value={formData.rate} onChange={handleChange}></input>    
               </div>
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="btn btn-primary">
                     Submit
                 </button>
       </form>
