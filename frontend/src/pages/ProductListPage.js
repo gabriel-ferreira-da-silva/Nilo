@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchAllProducts } from '../services/ProductService';
 import ItemCard from '../component/comom/ItemCard/ItemCard'
 
@@ -6,6 +7,11 @@ const ProductListPage = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleEditClick = (productId) => {
+    navigate(`/product/edit/${productId}`);
+  };
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -35,6 +41,7 @@ const ProductListPage = () => {
             description={product.description}
             price={product.price}
             imageUrl={product.image_url}
+            handleClick = {() => handleEditClick(product.id)}
           />
         ))}
         

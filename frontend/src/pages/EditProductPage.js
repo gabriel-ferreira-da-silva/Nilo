@@ -1,8 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import EditProductPanel from '../component/EditProduct/EditProduct';
 import { deleteProduct, putProduct } from '../services/ProductService';
 
 function EditProductPage() {
+
+  const { productId } = useParams();
   
   const handleEditProduct = async (productId, formData) => {
     try {
@@ -22,7 +25,7 @@ function EditProductPage() {
 
   return (
     <EditProductPanel
-    productId={'1'}
+    productId={productId}
     onEdit={handleEditProduct}
     onDelete={handleDeleteProduct}
     >
