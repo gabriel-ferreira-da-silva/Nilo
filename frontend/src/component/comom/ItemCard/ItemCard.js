@@ -1,6 +1,5 @@
-// src/components/common/Card.js
 import React from 'react';
-import './ItemCard.css'; // Optional: for adding styles
+import './ItemCard.css';
 
 function Card({ title, price, imageUrl, handleClick}) {
   return (

@@ -9,8 +9,8 @@ const ProductListPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleEditClick = (productId) => {
-    navigate(`/product/edit/${productId}`);
+  const handleDetailsClick = (productId) => {
+    navigate(`/product/details/${productId}`);
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const ProductListPage = () => {
             description={product.description}
             price={product.price}
             imageUrl={product.image_url}
-            handleClick = {() => handleEditClick(product.id)}
+            handleClick = {() => handleDetailsClick(product.id)}
           />
         ))}
         
