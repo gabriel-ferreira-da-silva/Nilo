@@ -37,7 +37,7 @@ function EditProductPanel({productId, onEdit, onDelete}) {
 
     const handleEdit = (e) => {
         e.preventDefault();
-        onEdit(formData);
+        onEdit(productId, formData);
     };
     
     const handleDelete = (e) => {

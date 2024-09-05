@@ -1,22 +1,20 @@
 import React from 'react';
 import EditProductPanel from '../component/EditProduct/EditProduct';
-import { postProduct, putProduct } from '../services/ProductService';
+import { deleteProduct, putProduct } from '../services/ProductService';
 
 function EditProductPage() {
   
-  const handleEditProduct = async (formData) => {
+  const handleEditProduct = async (productId, formData) => {
     try {
-      await putProduct(formData);
-      console.log(formData)
+      await putProduct(productId, formData);
     } catch (error) {
       alert('Failed to add product.');
     }
   };
 
-  const handleDeleteProduct = async (formData) => {
+  const handleDeleteProduct = async (productId) => {
     try {
-      await postProduct(formData);
-      console.log(formData)
+      await deleteProduct(productId);
     } catch (error) {
       alert('Failed to add product.');
     }
