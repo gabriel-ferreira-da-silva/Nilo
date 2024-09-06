@@ -1,47 +1,57 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProduct } from '../../services/ProductService';
-
+import { useNavigate } from 'react-router-dom';
 
 function DetailsProductPanel({productId}) {
-  
-        const [formData, setFormData] = useState({
-            name: '',
-            description: '',
-            category: '',
-            image_url: '',
-            rate: '',
-            price: ''
-        });
+    const navigate = useNavigate();
 
-        useEffect(() => {
-            const getProduct = async () => {
-                try {
-                    const response = await fetchProduct(productId);
-                    setFormData(response);
-                    console.log("this is my data" + formData.name)
-                } catch (error) {
-                    console.error("hey this is Failed to fetch product", error);
-                }
-            };
+    const goToEditPage= (productId) => {
+        navigate(`/product/edit/${productId}`);
+    };
 
-            if (productId) {
-                getProduct(productId);
+    const [formData, setFormData] = useState({
+        id:'',
+        name: '',
+        description: '',
+        category: '',
+        image_url: '',
+        rate: '',
+        price: ''
+    });
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const response = await fetchProduct(productId);
+                setFormData(response);
+                console.log("this is my data" + formData.name)
+            } catch (error) {
+                console.error("hey this is Failed to fetch product", error);
             }
-        }, [productId]);
+        };
+
+        if (productId) {
+            getProduct(productId);
+        }
+    }, [productId]);
 
 
-    return (
-        
+return (
+    
 
-        <div>
-            <img src={formData.image_url} alt={formData.name} />
-            <p> {formData.name}</p>
-            <p> { formData.category}</p>
-            <p> {formData.description}</p>
-            <p> {"price " + formData.price}</p>
-            <p> {formData.rate}</p>
-        </div>
+    <div>
+        <img src={formData.image_url} alt={formData.name} />
+        <p> {formData.name}</p>
+        <p> { formData.category}</p>
+        <p> {formData.description}</p>
+        <p> {"price: " + formData.price}</p>
+        <p> {formData.rate}</p>
+
+        <button type="button" onClick= {() => goToEditPage(formData.id)} className="btn btn-danger">
+            edit
+        </button>
+    </div>
   );
 }
 
