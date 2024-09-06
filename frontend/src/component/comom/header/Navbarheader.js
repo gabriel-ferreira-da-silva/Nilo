@@ -4,14 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Navbarheader(){
     return (
         <>
         <Navbar bg="primary" variant="dark">
         <Container>
-            <Navbar.Brand href="#home">NILO</Navbar.Brand>
+            <Navbar.Brand  className="justify-content-start" href="#home">NILO</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
@@ -21,7 +20,7 @@ function Navbarheader(){
         </Container>
         </Navbar>
 
-        <Navbar bg="light" variant="light">
+        <Navbar bg="light" variant="light" style={{ maxHeight: '50px' }}>
             <Container fluid>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
@@ -30,8 +29,9 @@ function Navbarheader(){
                 style={{ maxHeight: '100px' }}
                 navbarScroll
                 >
-                <Nav.Link href="#action1">Home</Nav.Link>
-                <Nav.Link href="#action2">Add</Nav.Link>
+                
+                <Nav.Link href="/productlist">Home</Nav.Link>
+                <Nav.Link href="/product/add">Add</Nav.Link>
                 <Nav.Link href="#action2">about</Nav.Link>
                 </Nav>
                 <Form className="d-flex">
@@ -41,7 +41,7 @@ function Navbarheader(){
                     className="me-2"
                     aria-label="Search"
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-primary">Search</Button>
                 </Form>
             </Navbar.Collapse>
             </Container>
