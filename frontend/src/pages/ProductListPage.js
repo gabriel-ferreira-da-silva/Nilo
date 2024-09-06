@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchAllProducts } from '../services/ProductService';
 import ItemCard from '../component/comom/ItemCard/ItemCard'
+import Navbarheader from '../component/comom/header/Navbarheader';
 
 const ProductListPage = () => {
   const [products, setProducts] = useState(null);
@@ -33,6 +34,9 @@ const ProductListPage = () => {
 
   return (
     <div>
+      <div>
+        <Navbarheader></Navbarheader>
+      </div>
       <div className="product-list">
           {products.map((product,index)=>(
             <ItemCard
