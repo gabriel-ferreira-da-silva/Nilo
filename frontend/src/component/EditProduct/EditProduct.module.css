@@ -1,0 +1,95 @@
+.EditForm{
+    width: 80% ;
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+.formImg{
+    align-self: center;
+    width: 350px;
+    height: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.imgHolder{
+    display: flex;          
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+.buttonHolder{
+    display: flex;          
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 5%;
+}
+
+.buttonEdit{
+    background-color: #4aa3ff;
+    border: none;
+    color: white;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20%;
+    width: 30%;
+}
+
+.buttonEdit:hover {
+    background-color: #007bff;
+}
+
+
+.buttonDelete{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20%;
+    width: 30%;
+
+    backface-visibility: hidden;
+    background-color: white;
+    
+
+    border-color: #aa0000;
+    border-width: 2px;
+    border-radius: 10px;
+    
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #aa0000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    height: 50px;
+    letter-spacing: normal;
+    line-height: 1.5;
+    overflow: hidden;
+    padding: 14px 30px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.buttonDelete:hover {
+    background-color: #aa0000;
+    color:white;
+    box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
 import { fetchProduct } from '../../services/ProductService';
+import style from './EditProduct.module.css'
 
 function EditProductPanel({productId, onEdit, onDelete}) {
     
@@ -8,7 +9,7 @@ function EditProductPanel({productId, onEdit, onDelete}) {
         name: '',
         description: '',
         category: '',
-        image_url: '',
+        image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUrgu4a7W_OM8LmAuN7Prk8dzWXm7PVB_FmA&s',
         rate: '',
         price: ''
     });
@@ -47,10 +48,10 @@ function EditProductPanel({productId, onEdit, onDelete}) {
 
     return (
           <div>
-            <div>
-              <img src={formData.image_url} alt={formData.name} />
+            <div class={style.imgHolder}>
+              <img src={formData.image_url} className={style.formImg} alt={formData.name} />
             </div>
-            <form onSubmit={handleEdit}>
+            <form onSubmit={handleEdit} className={style.EditForm}>
               <div class="form-group">
                 <label for="titleInput">Product Title</label>
                 <input class="form-control" id="titleInput" placeholder="title.." name="name" value={formData.name} onChange={handleChange} ></input>
@@ -75,14 +76,12 @@ function EditProductPanel({productId, onEdit, onDelete}) {
                 <label for="rateInput">Rate</label>
                 <input class="form-control" id="rateInput" placeholder="0.0" name="rate" value={formData.rate} onChange={handleChange}></input>    
               </div>
-              <button type="submit" className="btn btn-primary">
-                    Submit
-              </button>
-
-              <button type="button" onClick={handleDelete} className="btn btn-danger">
-                    delete
-              </button>
-
+            
+              <div className={style.buttonHolder}>
+                <button type="submit" className={style.buttonEdit}> Submit </button>
+                <button type="button" className={style.buttonDelete} onClick={handleDelete}> delete</button>
+              </div>
+              
             </form>
 
           </div>
