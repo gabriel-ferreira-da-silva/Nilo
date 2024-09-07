@@ -46,6 +46,10 @@ function EditProductPanel({productId, onEdit, onDelete}) {
     };
 
     return (
+          <div>
+            <div>
+              <img src={formData.image_url} alt={formData.name} />
+            </div>
             <form onSubmit={handleEdit}>
               <div class="form-group">
                 <label for="titleInput">Product Title</label>
@@ -80,6 +84,8 @@ function EditProductPanel({productId, onEdit, onDelete}) {
               </button>
 
             </form>
+
+          </div>
   );
 }
 
