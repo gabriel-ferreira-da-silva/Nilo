@@ -3,6 +3,7 @@ import { fetchProductsBatch } from "../../services/ProductService";
 import ItemCard from '../comom/ItemCard/ItemCard.js';
 import { useNavigate } from "react-router-dom";
 import { fetchProductInfo } from "../../services/InfoService.js";
+import './itemCardScroll.css'
 
 export default function ItemCardScroll() {
   const [products, setProducts] = useState([]);
@@ -71,16 +72,18 @@ export default function ItemCardScroll() {
 
   return (
     <div>
-      {products.map((product) => (
-        <ItemCard
-          key={product.id}
-          title={product.name}
-          description={product.description}
-          price={product.price}
-          imageUrl={product.image_url}
-          handleClick={() => handleDetailsClick(product.id)}
-        />
-      ))}
+      <div className="itemTable">
+        {products.map((product) => (
+          <ItemCard
+            key={product.id}
+            title={product.name}
+            description={product.description}
+            price={product.price}
+            imageUrl={product.image_url}
+            handleClick={() => handleDetailsClick(product.id)}
+          />
+        ))}
+      </div>
 
      
       {hasEndingPosts ? (
