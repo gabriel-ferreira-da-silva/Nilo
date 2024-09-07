@@ -1,0 +1,26 @@
+.editForm{
+    width: 80% ;
+    margin-left: 10%;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+
+.buttonSubmit{
+    background-color: #4aa3ff;
+    border: none;
+    color: white;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    margin-right: 10%;
+    margin-bottom: 20%;
+    margin-top: 15px;
+    width: 30%;
+}
+
+.buttonSubmit:hover {
+    background-color: #007bff;
+}

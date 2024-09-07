@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import './AddProduct.css'
+import style from './AddProduct.module.css'
+
+
 function AddProductPanel({onSubmit}) {
     const [formData, setFormData] = useState({
         name: '',
@@ -22,7 +24,7 @@ function AddProductPanel({onSubmit}) {
     };
 
     return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={style.editForm}>
               <div class="form-group">
                 <label for="titleInput">Product Title</label>
                 <input class="form-control" id="titleInput" placeholder="title.." name="name" value={formData.name} onChange={handleChange} ></input>
@@ -47,7 +49,7 @@ function AddProductPanel({onSubmit}) {
                 <label for="rateInput">Rate</label>
                 <input class="form-control" id="rateInput" placeholder="0.0" name="rate" value={formData.rate} onChange={handleChange}></input>    
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className={style.buttonSubmit}>
                     Submit
                 </button>
       </form>
