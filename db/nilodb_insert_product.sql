@@ -14,16 +14,16 @@ INSERT INTO product (name, description, category, image_url, rate, price)
 VALUES ('Watch', 'Smartwatch with heart rate monitoring', 'Accessories', 'https://anatomich.com/wp-content/uploads/2018/02/womens-watch-cinnamon-1.jpg', 4.4,  314.7);
 
 INSERT INTO product (name, description, category, image_url, rate, price) 
-VALUES ('Blender', 'High-speed blender for smoothies', 'Home Appliances', 'https://example.com/blender.jpg', 4.6, 1.22);
+VALUES ('cama box', 'cama box para toda a familia', 'casa', 'https://panoverse-cdn.com.br/img.panorama/produto/58179/base-de-cama-box-casal-monaco-cinamomo-tcil-moveis-500469-large.jpg', 1.4,  300.7);
 
 INSERT INTO product (name, description, category, image_url, rate, price) 
-VALUES ('Coffee Maker', 'Automatic drip coffee maker with timer', 'Home Appliances', 'https://example.com/coffeemaker.jpg', 4.1, 341.22);
+VALUES ('foguete', 'foguete para toda a familia', 'armas e aerospaco', 'https://img.odcdn.com.br/wp-content/uploads/2023/01/Destaque-foguete.jpg', 1.4,  11111000000.7);
 
 INSERT INTO product (name, description, category, image_url, rate, price) 
-VALUES ('Backpack', 'Durable backpack with multiple compartments', 'Accessories', 'https://example.com/backpack.jpg', 4.3, 44.22);
+VALUES ('bola', 'bola de futebol classica para jogar com seus amingos', 'armas e aerospaco', 'https://images.tcdn.com.br/img/img_prod/646374/bola_de_futebol_juvenil_n_5_271_1_20201213220437.jpg', 2.4,  10);
 
 INSERT INTO product (name, description, category, image_url, rate, price) 
-VALUES ('Wireless Earbuds', 'Noise-cancelling wireless earbuds', 'Electronics', 'https://example.com/wirelessearbuds.jpg', 4.9, 1020.22);
+VALUES ('bandeira', 'bola de futebol classica para jogar com seus amingos', 'armas e aerospaco', 'https://images-americanas.b2w.io/produtos/1821768295/imagens/bandeira-do-para-1-45m-x-1m/1821768308_1_xlarge.jpg', 2.4,  2.10);
 
 INSERT INTO product (name, description, category, image_url, rate, price) 
-VALUES ('Electric Kettle', 'Fast-boiling electric kettle', 'Home Appliances', 'https://example.com/electrickettle.jpg', 4.2, 100.22);
+VALUES ('camisa', 'bola de futebol classica para jogar com seus amingos', 'armas e aerospaco', 'https://images.tcdn.com.br/img/img_prod/275189/camisa_azul_royal_100_poliester_para_sublimacao_m_2701_1_20200722153204.jpg', 2.4,  2.10);
