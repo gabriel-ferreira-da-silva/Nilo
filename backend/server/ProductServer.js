@@ -46,6 +46,49 @@ app.get('/products', (req, res) => {
 });
 
 
+app.get('/info/product', (req, res) => {
+  const query = `
+    SELECT COUNT(*) AS productCount FROM product
+  `;
+
+  db.query(query, [], (err, results) => {
+    if (err) {
+      console.error('Error executing query', err);
+      res.status(500).send('Server error');
+      return;
+    }
+
+    const productCount = results[0].productCount;
+    res.json({ count: productCount });
+  });
+});
+
+
+app.get('/products/batch', (req, res) => {
+  const {_page, _limit}  = req.query;
+  
+  const page = parseInt(_page, 10) || 1;
+  const limit = parseInt(_limit, 10) || 3; 
+  const offset = (page - 1 ) * limit;
+
+  const query = `
+            select * from product
+            limit ? offset ?
+      `
+  
+  db.query(query,[limit, offset], (err, results) => {
+    if (err) {
+      res.status(500).send('Server error');
+      return;
+    }
+    console.log(limit)
+    console.log(offset)
+    console.log(results)
+    res.json(results);
+  });
+});
+
+
 app.get('/products/:id', (req, res) => {
   const id = req.params.id;
   db.query('SELECT * FROM product WHERE id = ?', [id], (err, results) => {

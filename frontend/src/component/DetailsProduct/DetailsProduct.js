@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchProduct } from '../../services/ProductService';
 import { useNavigate } from 'react-router-dom';
+import styles from './DetailsProduct.module.css';
 
 function DetailsProductPanel({productId}) {
     const navigate = useNavigate();
@@ -40,17 +41,27 @@ function DetailsProductPanel({productId}) {
 return (
     
 
-    <div>
-        <img src={formData.image_url} alt={formData.name} />
-        <p> {formData.name}</p>
-        <p> { formData.category}</p>
-        <p> {formData.description}</p>
-        <p> {"price: " + formData.price}</p>
-        <p> {formData.rate}</p>
+    <div className={styles.panel}>
+        <div className={styles.panelLeft}>
+            <img  className={styles.panelLeftImg} src={formData.image_url} alt={formData.name} />
+            <button type="button" onClick= {() => goToEditPage(formData.id)} className={styles.panelLeftButton}>
+                edit
+            </button>
 
-        <button type="button" onClick= {() => goToEditPage(formData.id)} className="btn btn-danger">
-            edit
-        </button>
+        </div>
+
+        <div className={styles.panelRightInfo}>
+            <p className={styles.name}> {formData.name}</p>
+            <p className={styles.category}> { formData.category}</p>
+            <p className={styles.description}> {formData.description}</p>
+            <div className={styles.priceInfo}>
+                <div className={styles.price}> {"R$ "+formData.price}</div>
+                <div className={styles.rate}> {formData.rate+'/5'}</div>
+            </div>
+            
+        </div>
+
+        
     </div>
   );
 }

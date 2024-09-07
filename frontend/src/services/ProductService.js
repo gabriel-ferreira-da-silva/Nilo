@@ -22,6 +22,21 @@ export const fetchAllProducts = async () => {
   }
 };
 
+export const fetchProductsBatch = async (currentPage, limit) => {
+  try {
+    const response = await axios.get(`http://localhost:4000/products/batch`, {
+      params: {
+        _page: currentPage,
+        _limit: limit
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
+  }
+};
+
 
 
 export const postProduct = async (data) => {
