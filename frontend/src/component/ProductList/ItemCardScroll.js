@@ -26,7 +26,6 @@ export default function ItemCardScroll() {
     const newProducts = await fetchProductsBatch(currentPage, 3);
     setProducts((oldProducts) => [...oldProducts, ...newProducts]); 
 
-    
     if (newProducts.length < 3) {
       setHasEndingPosts(true);
     }
@@ -36,7 +35,9 @@ export default function ItemCardScroll() {
 
   
   useEffect(() => {
-    loadMoreProducts();
+    if (!loading && !hasEndingPosts) {
+      loadMoreProducts();
+    }
   }, [currentPage]);
 
   
@@ -52,7 +53,7 @@ export default function ItemCardScroll() {
     const observer = new IntersectionObserver((entries) => {
       const target = entries[0];
       if (target.isIntersecting && !loading && !hasEndingPosts) {
-        setCurrentPage((oldPage) => oldPage + 1); 
+        setCurrentPage((oldPage) => oldPage + 1);
       }
     }, options);
 
@@ -62,10 +63,11 @@ export default function ItemCardScroll() {
 
     return () => {
       if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
+        observer.unobserve(loaderRef.current); 
       }
     };
   }, [loading, hasEndingPosts]); 
+
 
   return (
     <div>

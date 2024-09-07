@@ -75,11 +75,15 @@ app.get('/products/batch', (req, res) => {
             select * from product
             limit ? offset ?
       `
+  
   db.query(query,[limit, offset], (err, results) => {
     if (err) {
       res.status(500).send('Server error');
       return;
     }
+    console.log(limit)
+    console.log(offset)
+    console.log(results)
     res.json(results);
   });
 });
