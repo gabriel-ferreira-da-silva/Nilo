@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import EditProductPanel from '../component/EditProduct/EditProduct';
-import { deleteProduct, putProduct } from '../services/ProductService';
 import Navbarheader from '../component/comom/header/Navbarheader';
+import { handleDeleteProduct, handleEditProduct } from '../utils/EditProductUtils';
 
 
 function EditProductPage() {
