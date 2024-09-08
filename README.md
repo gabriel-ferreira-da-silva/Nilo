@@ -6,7 +6,7 @@
 
 
 
-app para aplicações de ecommerce implementado com react, node, mysql, docker e shell. O arquivo 'video de apresentação' explica o desenvolvimento d projeto alem de estar disponível em: https://drive.google.com/file/d/1_R5v0xMtCYs0WLLI123aW-jgtsrYTdAG/view?usp=sharing .
+app para aplicações de ecommerce implementado com react, node, mysql, docker e shell. O arquivo 'video de apresentação' explica o desenvolvimento d projeto alem de estar disponível em: https://www.youtube.com/watch?v=p26IwDFJ7rk&ab_channel=GabrielFerreiradaSilva
 
 ![](https://github.com/gabriel-ferreira-da-silva/Nilo/blob/main/doc/img1.png)
 
