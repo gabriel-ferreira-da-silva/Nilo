@@ -2,9 +2,13 @@ import React from 'react';
 import { useState,useEffect } from 'react';
 import { fetchProduct } from '../../services/ProductService';
 import style from './EditProduct.module.css'
+import AlertCommom from '../comom/alert/AlertCommom';
 
 function EditProductPanel({productId, onEdit, onDelete}) {
-    
+    const [alert, setAlert] = useState({
+      message:'',
+      class:''
+    })
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -36,18 +40,22 @@ function EditProductPanel({productId, onEdit, onDelete}) {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleEdit = (e) => {
+    const handleEdit = async(e) => {
         e.preventDefault();
-        onEdit(productId, formData);
+        await onEdit(productId, formData, setAlert);
     };
     
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault();
-        onDelete(productId);
+        await onDelete(productId, setAlert);
     };
 
     return (
           <div>
+            <AlertCommom
+              alertHook={alert}
+            ></AlertCommom>
+
             <div class={style.imgHolder}>
               <img src={formData.image_url} className={style.formImg} alt={formData.name} />
             </div>
