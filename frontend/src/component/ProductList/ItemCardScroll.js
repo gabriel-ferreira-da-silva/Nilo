@@ -3,7 +3,7 @@ import ItemCard from '../comom/ItemCard/ItemCard.js';
 import { useNavigate } from "react-router-dom";
 import { OrbitProgress } from "react-loading-indicators";
 import style from './itemCardScroll.module.css'
-import { loadMoreProducts, newObserver} from "./productListUtils.js";
+import { loadMoreProducts, newObserver} from "../../utils/productListUtils.js";
 
 
 export default function ItemCardScroll() {
@@ -15,18 +15,12 @@ export default function ItemCardScroll() {
   const navigate = useNavigate();
 
   const usedHooks={
-    loading,
-    hasEndingPosts,
-    setLoading,
-    setProducts,
-    currentPage,
-    setHasEndingPosts
+    loading,hasEndingPosts,setLoading,setProducts,currentPage,setHasEndingPosts
   };
 
   const handleDetailsClick = (productId)=>{
     navigate(`/product/details/${productId}`);
   };
-
 
   useEffect(() => {
     if (loading || hasEndingPosts) return;

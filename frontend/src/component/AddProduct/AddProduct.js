@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import style from './AddProduct.module.css'
 import AlertCommom from '../comom/alert/AlertCommom';
+import { postProduct } from '../../services/ProductService';
 
 function AddProductPanel({onSubmit}) {
     const [formData, setFormData] = useState({

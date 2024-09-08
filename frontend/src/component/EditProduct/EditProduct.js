@@ -1,54 +1,19 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
-import { fetchProduct } from '../../services/ProductService';
+import { getProduct } from '../../utils/EditProductUtils';
 import style from './EditProduct.module.css'
 import AlertCommom from '../comom/alert/AlertCommom';
+import { emptyAlert,empytProduct } from '../../utils/commomUtils';
+
+import { handleChange,handleDelete,handleEdit } from '../../utils/EditProductUtils';
 
 function EditProductPanel({productId, onEdit, onDelete}) {
-    const [alert, setAlert] = useState({
-      message:'',
-      class:''
-    })
-    const [formData, setFormData] = useState({
-        name: '',
-        description: '',
-        category: '',
-        image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUrgu4a7W_OM8LmAuN7Prk8dzWXm7PVB_FmA&s',
-        rate: '',
-        price: '',
-    });
+    const [alert, setAlert] = useState(emptyAlert)
+    const [formData, setFormData] = useState(empytProduct);
 
     useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const response = await fetchProduct(productId);
-                setFormData(response);
-                console.log("this is my data" + formData.name)
-            } catch (error) {
-                console.error("hey this is Failed to fetch product", error);
-            }
-        };
-
-        if (productId) {
-            getProduct(productId);
-        }
+        getProduct({productId, setFormData});
     }, [productId]);
-
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleEdit = async(e) => {
-        e.preventDefault();
-        await onEdit(productId, formData, setAlert);
-    };
-    
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        await onDelete(productId, setAlert);
-    };
 
     return (
           <div>
@@ -62,32 +27,32 @@ function EditProductPanel({productId, onEdit, onDelete}) {
             <form onSubmit={handleEdit} className={style.EditForm}>
               <div class="form-group">
                 <label for="titleInput">Product Title</label>
-                <input class="form-control" id="titleInput" placeholder="title.." name="name" value={formData.name} onChange={handleChange} ></input>
+                <input class="form-control" id="titleInput" placeholder="title.." name="name" value={formData.name} onChange={(e) => handleChange(e, formData, setFormData)} ></input>
               </div>
               <div class="form-group">
                 <label for="titleInput">Image URL</label>
-                <input class="form-control" id="titleInput" placeholder="url..." name="image_url" value={formData.image_url} onChange={handleChange}></input>    
+                <input class="form-control" id="titleInput" placeholder="url..." name="image_url" value={formData.image_url} onChange={(e) => handleChange(e, formData, setFormData)}></input>    
               </div>
               <div class="form-group">
                 <label for="descriptionInput">Description</label>
-                <textarea class="form-control" id="descriptionInput" placeholder="product is..."rows="3" name="description" value={formData.description} onChange={handleChange}></textarea>
+                <textarea class="form-control" id="descriptionInput" placeholder="product is..."rows="3" name="description" value={formData.description} onChange={(e) => handleChange(e, formData, setFormData)}></textarea>
               </div>
               <div class="form-group">
                 <label for="categoryInput">Category</label>
-                <input class="form-control" id="categoryInput" placeholder="category" name="category" value={formData.category} onChange={handleChange}></input>    
+                <input class="form-control" id="categoryInput" placeholder="category" name="category" value={formData.category} onChange={(e) => handleChange(e, formData, setFormData)}></input>    
               </div>
               <div class="form-group">
                 <label for="priceInput">Price</label>
-                <input class="form-control" id="priceInput" placeholder="0.0" name="price" value={formData.price} onChange={handleChange}></input>    
+                <input class="form-control" id="priceInput" placeholder="0.0" name="price" value={formData.price} onChange={(e) => handleChange(e, formData, setFormData)}></input>    
               </div>
               <div class="form-group">
                 <label for="rateInput">Rate</label>
-                <input class="form-control" id="rateInput" placeholder="0.0" name="rate" value={formData.rate} onChange={handleChange}></input>    
+                <input class="form-control" id="rateInput" placeholder="0.0" name="rate" value={formData.rate} onChange={(e) => handleChange(e, formData, setFormData)}></input>    
               </div>
             
               <div className={style.buttonHolder}>
-                <button type="submit" className={style.buttonEdit}> Submit </button>
-                <button type="button" className={style.buttonDelete} onClick={handleDelete}> delete</button>
+                <button className={style.buttonEdit} onClick={(e) => handleEdit(e, productId, formData, onEdit, setAlert)}>Edit</button>
+                <button className={style.buttonDelete }onClick={(e) => handleDelete(e, productId, onDelete, setAlert)}>Delete</button>
               </div>
               
             </form>
