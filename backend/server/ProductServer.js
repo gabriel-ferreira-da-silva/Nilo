@@ -119,9 +119,9 @@ app.post('/products', (req, res) => {
 
 app.put('/products/:id', (req, res) => {
   const id = req.params.id;
-  const { name, description, category, image_url, rate } = req.body;
-  const query = 'UPDATE product SET name = ?, description = ?, category = ?, image_url = ?, rate = ? WHERE id = ?';
-  db.query(query, [name, description, category, image_url, rate, id], (err, results) => {
+  const { name, description, category, image_url, price, rate } = req.body;
+  const query = 'UPDATE product SET name = ?, description = ?, category = ?, image_url = ?, rate = ?, price = ? WHERE id = ?';
+  db.query(query, [name, description, category, image_url, rate,price,  id], (err, results) => {
     if (err) {
       res.status(500).send('Server error');
       return;
