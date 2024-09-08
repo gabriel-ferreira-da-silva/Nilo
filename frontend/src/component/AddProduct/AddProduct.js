@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import style from './AddProduct.module.css'
-
+import AlertCommom from '../comom/alert/AlertCommom';
 
 function AddProductPanel({onSubmit}) {
     const [formData, setFormData] = useState({
@@ -13,17 +13,27 @@ function AddProductPanel({onSubmit}) {
         price:''
     });
 
+    const [alert, setAlert] = useState({
+      message:'',
+      class:''
+    })
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        await onSubmit(formData, setAlert);
     };
 
     return (
+          <div>
+            <AlertCommom
+            alertHook={alert}
+            ></AlertCommom>
+
             <form onSubmit={handleSubmit} className={style.editForm}>
               <div class="form-group">
                 <label for="titleInput">Product Title</label>
@@ -52,7 +62,9 @@ function AddProductPanel({onSubmit}) {
               <button type="submit" className={style.buttonSubmit}>
                     Submit
                 </button>
-      </form>
+            </form>
+          </div>
+            
   );
 }
 
