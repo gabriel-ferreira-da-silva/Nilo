@@ -2,8 +2,11 @@
 
 echo "Setting up the database..."
 cd db || exit
-mysql -u NILOuser -pNILOuser NILODB < nilodb_create.sql
-mysql -u NILOuser -pNILOuser NILODB < nilodb_insert.sql
+
+sudo mysql -u root  < nilodb_create.sql
+mysql -u NILOuser -p NILOuser NILODB < nilodb_create.sql
+mysql -u NILOuser -p NILOuser NILODB < nilodb_insert.sql
+
 cd ..
 
 echo "Starting backend service..."

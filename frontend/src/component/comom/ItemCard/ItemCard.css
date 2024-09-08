@@ -15,7 +15,9 @@
   }
   
   .card-content {
+    display: flex;
     padding: 16px;
+    
   }
   
   .card-title {
@@ -26,12 +28,14 @@
   .card-description {
     font-size: 1rem;
     color: #555;
-    margin: 0 0 16px;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   
   .card-price {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
+    font-size: 1.5rem;
+    color:cornflowerblue;
+    margin-right: 5%;
+    margin-left: auto;
   }
   
