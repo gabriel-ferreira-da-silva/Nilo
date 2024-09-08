@@ -7,12 +7,19 @@ import Navbarheader from '../component/comom/header/Navbarheader';
 
 function AddProductPage() {
     
-    const handleFormSubmit = async (formData) => {
+    const handleFormSubmit = async (formData,setAlert) => {
       try {
         await postProduct(formData);
-        console.log(formData)
+        console.log(formData);
+        setAlert({
+          message: 'Product added successfully!',
+          class: 'alert alert-primary',
+        });
       } catch (error) {
-        alert('Failed to add product.');
+        setAlert({
+          message: 'Failed to add product.',
+          class: 'alert alert-danger',
+        });
       }
     };
 
