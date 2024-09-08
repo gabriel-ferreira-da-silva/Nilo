@@ -21,7 +21,7 @@ function EditProductPage() {
     try {
       await deleteProduct(productId);
     } catch (error) {
-      alert('Failed to add product.');
+      alert('Failed to delete product.');
     }
   };
 
