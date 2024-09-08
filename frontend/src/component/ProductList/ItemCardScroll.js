@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { fetchProductsBatch } from "../../services/ProductService";
 import ItemCard from '../comom/ItemCard/ItemCard.js';
 import { useNavigate } from "react-router-dom";
+import { OrbitProgress } from "react-loading-indicators";
 import { fetchProductInfo } from "../../services/InfoService.js";
-import './itemCardScroll.css'
+import style from './itemCardScroll.module.css'
 
 export default function ItemCardScroll() {
   const [products, setProducts] = useState([]);
@@ -72,7 +73,7 @@ export default function ItemCardScroll() {
 
   return (
     <div>
-      <div className="itemTable">
+      <div className={style.itemTable}>
         {products.map((product) => (
           <ItemCard
             key={product.id}
@@ -87,9 +88,12 @@ export default function ItemCardScroll() {
 
      
       {hasEndingPosts ? (
-        <div>All products presented</div>
+        <div className={style.allFetchedLabel}>All products are fetched</div>
       ) : (
-        <div ref={loaderRef}>Loading more products...</div>
+        <div ref={loaderRef} className={style.loading}>
+          <OrbitProgress color="#2367cd" size="medium" text="" textColor="" />
+        </div>
+        
       )}
     </div>
   );
