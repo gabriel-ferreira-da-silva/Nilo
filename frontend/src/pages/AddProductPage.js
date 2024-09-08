@@ -1,18 +1,24 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import AddProductPanel from '../component/AddProduct/AddProduct';
-import ButtonGreen from  '../component/comom/buttons/ButtonGreen';
 import { postProduct } from '../services/ProductService';
 import Navbarheader from '../component/comom/header/Navbarheader';
 
 function AddProductPage() {
     
-    const handleFormSubmit = async (formData) => {
+    const handleFormSubmit = async (formData,setAlert) => {
       try {
         await postProduct(formData);
-        console.log(formData)
+        console.log(formData);
+        setAlert({
+          message: 'Product added successfully!',
+          class: 'alert alert-primary',
+        });
       } catch (error) {
-        alert('Failed to add product.');
+        setAlert({
+          message: 'Failed to add product.',
+          class: 'alert alert-danger',
+        });
       }
     };
 

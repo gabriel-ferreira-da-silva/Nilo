@@ -1,0 +1,23 @@
+.itemTable{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
+    padding: 10px;
+}
+
+.loading{
+    margin-left: 40%;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.allFetchedLabel{
+    margin-left: 40%;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+    font-size: 30;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    color:#2367cd;
+}
