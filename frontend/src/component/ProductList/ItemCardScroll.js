@@ -3,7 +3,6 @@ import { fetchProductsBatch } from "../../services/ProductService";
 import ItemCard from '../comom/ItemCard/ItemCard.js';
 import { useNavigate } from "react-router-dom";
 import { OrbitProgress } from "react-loading-indicators";
-import { fetchProductInfo } from "../../services/InfoService.js";
 import style from './itemCardScroll.module.css'
 
 export default function ItemCardScroll() {
