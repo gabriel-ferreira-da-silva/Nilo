@@ -5,7 +5,8 @@ cd db || exit
 
 sudo mysql -u root  < nilodb_create.sql
 mysql -u NILOuser -p NILOuser NILODB < nilodb_create.sql
-mysql -u NILOuser -p NILOuser NILODB < nilodb_insert.sql
+mysql -u NILOuser -p NILOuser NILODB < nilodb_insert_product.sql
+mysql -u NILOuser -p NILOuser NILODB < nilodb_insert_manager.sql
 
 cd ..
 
