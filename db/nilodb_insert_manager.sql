@@ -1,2 +1,2 @@
-INSERT INTO manager (name, username,email, password) 
+INSERT INTO managers (name, username,email, password) 
 VALUES ('admin','admin', 'admin','admin')

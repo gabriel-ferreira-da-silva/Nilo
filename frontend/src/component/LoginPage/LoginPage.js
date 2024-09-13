@@ -17,11 +17,11 @@ async function loginUser(credentials) {
 export default function LoginPage({ setToken }) {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');  // State to store the error message
+    const [error, setError] = useState(''); 
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      setError('');  // Reset error before submitting
+      setError('');  
   
       const token = await loginUser({
         username,
@@ -32,7 +32,7 @@ export default function LoginPage({ setToken }) {
         setToken(token);
         window.location.reload();
       } else {
-        setError('Something went wrong. Please check your credentials.');  // Set error message
+        setError('Something went wrong. Please check your credentials.'); 
       }
     }
   
