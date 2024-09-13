@@ -7,17 +7,8 @@ import EditProductPage from './pages/EditProductPage';
 import DetailsProductPage from './pages/DetailsProductPage';
 import LoginPage from './component/LoginPage/LoginPage';
 
+import { getToken,setToken } from './utils/AuthUtils';
 
-
-function setToken(userToken) {
-  sessionStorage.setItem('token', JSON.stringify(userToken));
-}
-
-function getToken() {
-  const tokenString = sessionStorage.getItem('token');
-  const userToken = JSON.parse(tokenString);
-  return userToken?.token
-}
 
 function App() {
 

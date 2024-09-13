@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { getUser } from "../../../utils/AuthUtils";
 
 function Navbarheader(){
+    const [user,setUser] = useState(getUser());
     return (
         <>
         <Navbar bg="primary" variant="dark">
@@ -14,7 +16,7 @@ function Navbarheader(){
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-                <a>@username</a>
+                <a>{"@"+ user.username}</a>
             </Navbar.Text>
             </Navbar.Collapse>
         </Container>
