@@ -14,8 +14,9 @@ echo "Starting backend service..."
 cd backend || exit
 npm install
 cd server || exit
-node ProductServer.js &
-cd ../..
+cd ..
+node main.js &
+cd ..
 
 echo "Starting frontend service..."
 cd frontend || exit
