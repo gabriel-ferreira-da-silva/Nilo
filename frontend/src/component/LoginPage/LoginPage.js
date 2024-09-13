@@ -4,7 +4,7 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 async function loginUser(credentials) {
- return fetch('http://localhost:4000/auth/login', {
+ return fetch('http://localhost:4000/auth/login/user', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export default function LoginPage({ setToken }) {
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError('');  
-  
+
       const token = await loginUser({
         username,
         password

@@ -9,10 +9,6 @@ const JWT_SECRET = "nilo_secret_key";
 
 require('dotenv').config();
 
-
-const app = express();
-const port = process.env.PORT || 4000;
-
 const router = express.Router();
 
 
@@ -34,14 +30,13 @@ db.connect((err) => {
 
 
 
-router.post('/login', (req, res) => {
+router.post('/login/admin', (req, res) => {
   const {username,password} = req.body;
   if(!username || !password){
     return res.status(400).json({message: "username or password are empty"})
   }
 
   const query = "select * from managers where username = ?";
-  
   db.query(query, [username], async (err, results) => {
     if (err) {
       return res.status(500).json({ message: 'Database error', error: err });
@@ -57,7 +52,32 @@ router.post('/login', (req, res) => {
     console.log(token)
     return res.json({ token });
   });
-  
+});
+
+
+router.post('/login/user', (req, res) => {
+  const {username,password} = req.body;
+  if(!username || !password){
+    return res.status(400).json({message: "username or password are empty"})
+  }
+
+  const query = "select * from users where username = ?";
+  db.query(query, [username], async (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Database error', error: err });
+    }
+    if (results.length === 0) {
+      return res.status(400).json({ message: 'Invalid username or password' });
+    }
+    const user = results[0];
+    if (password!=user.password) 
+      return res.status(400).json({ message: 'Invalid username or password' });
+    
+    const token = jwt.sign({ userId: user.id, username: user.username,role:"user" }, JWT_SECRET, { expiresIn: '1h' });
+    console.log("token showuld be here")
+    console.log(token)
+    return res.json({ token });
+  });
 });
 
 
