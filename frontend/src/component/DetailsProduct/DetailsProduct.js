@@ -3,13 +3,19 @@ import { useState, useEffect } from 'react';
 import { fetchProduct } from '../../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import styles from './DetailsProduct.module.css';
+import { getUser } from '../../utils/AuthUtils';
 
 function DetailsProductPanel({productId}) {
     const navigate = useNavigate();
+    const [user,setUser] = useState(getUser())
 
     const goToEditPage= (productId) => {
         navigate(`/product/edit/${productId}`);
     };
+
+    const AddToChart=(productId)=>{
+        
+    }
 
     const [formData, setFormData] = useState({
         id:'',
@@ -44,9 +50,19 @@ return (
     <div className={styles.panel}>
         <div className={styles.panelLeft}>
             <img  className={styles.panelLeftImg} src={formData.image_url} alt={formData.name} />
-            <button type="button" onClick= {() => goToEditPage(formData.id)} className={styles.panelLeftButton}>
-                edit
-            </button>
+            
+            {
+                (user.role=="admin")
+                ?
+                (<button type="button" onClick= {() => goToEditPage(formData.id)} className={styles.panelLeftButton}>
+                    edit
+                </button>):
+                (<button type="button" onClick= {() => AddToChart(formData.id)} className={styles.panelLeftButton}>
+                    add to cart
+                </button>)
+            }
+
+            
 
         </div>
 
