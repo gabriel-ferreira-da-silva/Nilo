@@ -3,17 +3,11 @@ const cors = require('cors');
 const path = require('path');
 const express = require('express');
 const mysql = require('mysql2');
+const router = express.Router();
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 4000;
-
-
-app.use(cors({
-    origin: '*', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type']
-}));
 
 
 app.use(express.json());
@@ -35,7 +29,7 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-app.get('/products', (req, res) => {
+router.get('/products', (req, res) => {
   db.query('SELECT * FROM product', (err, results) => {
     if (err) {
       res.status(500).send('Server error');
@@ -46,7 +40,7 @@ app.get('/products', (req, res) => {
 });
 
 
-app.get('/info/product', (req, res) => {
+router.get('/info/product', (req, res) => {
   const query = `
     SELECT COUNT(*) AS productCount FROM product
   `;
@@ -64,7 +58,7 @@ app.get('/info/product', (req, res) => {
 });
 
 
-app.get('/products/batch', (req, res) => {
+router.get('/products/batch', (req, res) => {
   const {_page, _limit}  = req.query;
   
   const page = parseInt(_page, 10) || 1;
@@ -89,7 +83,7 @@ app.get('/products/batch', (req, res) => {
 });
 
 
-app.get('/products/:id', (req, res) => {
+router.get('/products/:id', (req, res) => {
   const id = req.params.id;
   db.query('SELECT * FROM product WHERE id = ?', [id], (err, results) => {
     if (err) {
@@ -104,7 +98,7 @@ app.get('/products/:id', (req, res) => {
   });
 });
 
-app.post('/products', (req, res) => {
+router.post('/products', (req, res) => {
   const { name, description, category, image_url, rate } = req.body;
   const query = 'INSERT INTO product (name, description, category, image_url, rate) VALUES (?, ?, ?, ?, ?)';
   db.query(query, [name, description, category, image_url, rate], (err, results) => {
@@ -117,7 +111,7 @@ app.post('/products', (req, res) => {
 });
 
 
-app.put('/products/:id', (req, res) => {
+router.put('/products/:id', (req, res) => {
   const id = req.params.id;
   const { name, description, category, image_url, price, rate } = req.body;
   const query = 'UPDATE product SET name = ?, description = ?, category = ?, image_url = ?, rate = ?, price = ? WHERE id = ?';
@@ -134,7 +128,7 @@ app.put('/products/:id', (req, res) => {
   });
 });
 
-app.delete('/products/:id', (req, res) => {
+router.delete('/products/:id', (req, res) => {
   const id = req.params.id;
   db.query('DELETE FROM product WHERE id = ?', [id], (err, results) => {
     if (err) {
@@ -149,6 +143,4 @@ app.delete('/products/:id', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+module.exports=router;
