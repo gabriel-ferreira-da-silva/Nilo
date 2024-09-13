@@ -39,7 +39,7 @@ router.get('/item', (req, res) => {
 router.post('/item', (req, res) => {
   const { id_user, date_created, id_product } = req.body;
   const today = new Date()
-  const query = 'INSERT INTO into (id, id_user, cart_date,quantity ) VALUES (?,?, ?, ?)';
+  const query = 'INSERT INTO into (id, id_user, cart_date, quantity ) VALUES (?,?, ?, ?)';
   db.query(query, [id_product,id_user, date_created, 1 ], (err, results) => {
     if (err) {
       res.status(500).send('Server error');

@@ -4,7 +4,8 @@ import { fetchProduct } from '../../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import styles from './DetailsProduct.module.css';
 import { getUser } from '../../utils/AuthUtils';
-
+import { fetchCartByUserCurrent, postCart } from '../../services/CartService';
+import { postItem } from '../../services/ItemService';
 function DetailsProductPanel({productId}) {
     const navigate = useNavigate();
     const [user,setUser] = useState(getUser())
@@ -14,7 +15,12 @@ function DetailsProductPanel({productId}) {
     };
 
     const AddToChart=(productId)=>{
-        
+        let response =  fetchCartByUserCurrent(user.id);
+        if(response==[]){
+            response = postCart(user.id)
+        }
+        console.log(response.date_created)
+        console.log(postItem(user.id, response.date_created, productId))
     }
 
     const [formData, setFormData] = useState({

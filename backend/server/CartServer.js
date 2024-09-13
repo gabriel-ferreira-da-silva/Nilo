@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2');
+const { format } = require('date-fns');
 const router = express.Router();
 require('dotenv').config();
 
@@ -47,16 +48,29 @@ router.get('/cart/user', (req, res) => {
   });
 });
 
+router.get('/cart/user/current', (req, res) => {
+  const {id_user} = req.body;
+  const query = 'SELECT * FROM cart WHERE id_user = ? and date_sold is null';
+  db.query(query,[id_user], (err, results) => {
+    if (err) {
+      res.status(500).send('Server error');
+      return;
+    }
+    res.json(results[0]);
+  });
+});
+
 
 
 router.post('/cart', (req, res) => {
   const { id_user } = req.body;
   const today = new Date()
   const formatDate = format(today, 'yyyy-MM-dd');
-  const query = 'INSERT INTO cart (user_id, date_created) VALUES (?, ?)';
+  const query = 'INSERT INTO cart (id_user, date_created) VALUES (?, ?)';
   db.query(query, [id_user,formatDate], (err, results) => {
     if (err) {
       res.status(500).send('Server error');
+      console.log(err)
       return;
     }
     res.status(201).json({ user_id:id_user, date_created: formatDate});
