@@ -4,7 +4,7 @@ import { fetchProduct } from '../../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import styles from './DetailsProduct.module.css';
 import { getUser } from '../../utils/AuthUtils';
-import { fetchCartByUserCurrent, postCart } from '../../services/CartService';
+import { postCart,fetchCartCurrent } from '../../services/CartService';
 import { postItem } from '../../services/ItemService';
 function DetailsProductPanel({productId}) {
     const navigate = useNavigate();
@@ -14,14 +14,25 @@ function DetailsProductPanel({productId}) {
         navigate(`/product/edit/${productId}`);
     };
 
-    const AddToChart=(productId)=>{
-        let response =  fetchCartByUserCurrent(user.id);
-        if(response==[]){
-            response = postCart(user.id)
+    const AddToCart = async (productId) => {
+        try {
+            let responseCart = await fetchCartCurrent( user.id);
+            if(!responseCart){
+                responseCart = await postCart(user.id);
+            }
+
+            console.log(responseCart.date_created)
+            
+            /*
+            const result = await postItem(productId, user.id,cart_date)
+            console.log(result)*/
+        
+        } catch (error) {
+          console.error('Error adding item to cart:', error);
         }
-        console.log(response.date_created)
-        console.log(postItem(user.id, response.date_created, productId))
-    }
+      };
+      
+      
 
     const [formData, setFormData] = useState({
         id:'',
@@ -63,7 +74,7 @@ return (
                 (<button type="button" onClick= {() => goToEditPage(formData.id)} className={styles.panelLeftButton}>
                     edit
                 </button>):
-                (<button type="button" onClick= {() => AddToChart(formData.id)} className={styles.panelLeftButton}>
+                (<button type="button" onClick= {() => AddToCart(formData.id)} className={styles.panelLeftButton}>
                     add to cart
                 </button>)
             }

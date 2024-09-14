@@ -7,7 +7,7 @@ FLUSH PRIVILEGES;
 
 USE NILODB;
 
-DROP TABLE IF EXISTS have, cart, item, product, users, managers, added_product , edited_product;
+DROP TABLE IF EXISTS have,edit,  cart, item, product, users, managers, added_product , edited_product;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,8 +53,8 @@ CREATE TABLE edit (
 
 CREATE TABLE cart (
     id_user INT,  
-    date_created DATE,
-    date_sold DATE,
+    date_created DATETIME,
+    date_sold DATETIME,
 
     PRIMARY KEY (id_user, date_created),
     FOREIGN KEY (id_user) REFERENCES users(id)
@@ -63,7 +63,7 @@ CREATE TABLE cart (
 CREATE TABLE item (
     id INT,  
     id_user INT,
-    cart_date DATE,
+    cart_date DATETIME,
     quantity INT,
 
     PRIMARY KEY (id),
@@ -74,7 +74,7 @@ CREATE TABLE item (
 CREATE TABLE have (
     id_item INT,  
     id_user INT,  
-    date_created DATE,
+    date_created DATETIME,
     quantity INT,
 
     PRIMARY KEY (id_user, id_item, date_created),

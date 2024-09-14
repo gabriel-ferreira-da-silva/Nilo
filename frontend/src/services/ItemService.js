@@ -1,33 +1,23 @@
 import axios from 'axios';
 
-export const fetchItem = async () => {
-  try{
-    const response = await fetch('http://localhost:4000/auth/item', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-      .then(data => data.json())
-    console.log(response.data);
+
+export const fetchAllItem = async () => {
+  try {
+    const response = await axios.get(`http://localhost:4000/api/item`);
     return response.data;
-  }catch(e){
-    throw e;
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    throw error;
   }
 };
 
-export const postItem = async (userId, cartDate, productId) => {
-  try{
-    const response = await fetch('http://localhost:4000/auth/cart', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-      .then(data => data.json())
-    console.log(response.data);
+export const postItem = async (id,userId,cartDate) => {
+  try {
+    const response = await axios.post(`http://localhost:4000/api/item`, {id_product:id,id_user:userId,cart_date:cartDate});
+    console.log(response.data)
     return response.data;
-  }catch(e){
-    throw e;
+  } catch (error) {
+    console.error('Error posting product:', error);
+    throw error;
   }
 };

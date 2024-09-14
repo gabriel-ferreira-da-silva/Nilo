@@ -1,10 +1,13 @@
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
 const express = require('express');
 const mysql = require('mysql2');
-const { format } = require('date-fns');
 const router = express.Router();
 require('dotenv').config();
 
 const app = express();
+const port = process.env.PORT || 4000;
 
 
 app.use(express.json());
@@ -36,46 +39,48 @@ router.get('/cart', (req, res) => {
   });
 });
 
-router.get('/cart/user', (req, res) => {
-  const {id_user} = req.body;
-  const query = 'SELECT * FROM cart WHERE id_user = ?';
-  db.query(query,[id_user], (err, results) => {
-    if (err) {
-      res.status(500).send('Server error');
+router.get('/cart/user', (req,res)=>{
+  const { id_user } = req.query;
+  const query = "select * from cart where id_user = ?"
+  db.query(query, [id_user],(err,results)=>{
+    if(err){
+      res.status(500).send("error in query")
       return;
     }
-    res.json(results);
-  });
-});
+    res.json(results)
+  })
+})
+
+
 
 router.get('/cart/user/current', (req, res) => {
+  const { id_user } = req.query; // Read from query params
+  const query = "SELECT * FROM cart WHERE id_user = ? AND date_sold IS NULL";
+
+  db.query(query, [id_user], (err, results) => {
+    if (err) {
+      res.status(500).send("Error in query");
+      console.error(err);
+      return;
+    }
+    console.log("Current cart:", results[0]);
+    res.json(results[0]); // Send the first result if expecting a single current cart
+  });
+});
+
+
+router.post('/cart/user', (req,res)=>{
   const {id_user} = req.body;
-  const query = 'SELECT * FROM cart WHERE id_user = ? and date_sold is null';
-  db.query(query,[id_user], (err, results) => {
-    if (err) {
-      res.status(500).send('Server error');
+  const date = new Date().toISOString().split('T')[0];
+  const query = "insert into cart(id_user, date_created) values(?,?)"
+  db.query(query, [id_user,date],(err,results)=>{
+    if(err){
+      res.status(500).send("error in query")
       return;
     }
-    res.json(results[0]);
-  });
-});
-
-
-
-router.post('/cart', (req, res) => {
-  const { id_user } = req.body;
-  const today = new Date()
-  const formatDate = format(today, 'yyyy-MM-dd');
-  const query = 'INSERT INTO cart (id_user, date_created) VALUES (?, ?)';
-  db.query(query, [id_user,formatDate], (err, results) => {
-    if (err) {
-      res.status(500).send('Server error');
-      console.log(err)
-      return;
-    }
-    res.status(201).json({ user_id:id_user, date_created: formatDate});
-  });
-});
-
+    console.log("me nataasdfnasdfasjdfakjfdn"+results)
+    res.json(results)
+  })
+})
 
 module.exports=router;

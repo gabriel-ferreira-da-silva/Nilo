@@ -1,9 +1,13 @@
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
 const express = require('express');
 const mysql = require('mysql2');
 const router = express.Router();
 require('dotenv').config();
 
 const app = express();
+const port = process.env.PORT || 4000;
 
 
 app.use(express.json());
@@ -31,23 +35,30 @@ router.get('/item', (req, res) => {
       res.status(500).send('Server error');
       return;
     }
+    console.log(results)
     res.json(results);
   });
 });
 
 
-router.post('/item', (req, res) => {
-  const { id_user, date_created, id_product } = req.body;
-  const today = new Date()
-  const query = 'INSERT INTO into (id, id_user, cart_date, quantity ) VALUES (?,?, ?, ?)';
-  db.query(query, [id_product,id_user, date_created, 1 ], (err, results) => {
-    if (err) {
-      res.status(500).send('Server error');
+router.post('/item', (req,res)=>{
+  const {id_product, id_user, cart_date} = req.body;
+  console.log("+==================================")
+  console.log(req.body)
+  console.log("+==================================")
+  
+  const query = 'INSERT INTO item (id, id_user, cart_date, quantity) VALUES (?, ?, ?, 1)';
+
+  db.query(query, [id_product,id_user,cart_date],(err,results)=>{
+    if(err){
+      console.log(err)
+      res.status(500).send("error in db")
       return;
     }
-    res.status(201).json({ user_id:id_user, date_created: date_created, id_product:id_product, quantity: 1});
-  });
-});
+    console.log([id_product,id_user]) 
 
+    res.json(results)
+  })
+})
 
 module.exports=router;

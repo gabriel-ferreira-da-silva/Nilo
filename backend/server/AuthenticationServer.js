@@ -73,7 +73,7 @@ router.post('/login/user', (req, res) => {
     if (password!=user.password) 
       return res.status(400).json({ message: 'Invalid username or password' });
     
-    const token = jwt.sign({ userId: user.id, username: user.username, email: user.email, name:user.name , role:"user" }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id, username: user.username, email: user.email, name:user.name , role:"user" }, JWT_SECRET, { expiresIn: '1h' });
     console.log("token showuld be here")
     console.log(token)
     return res.json({ token });

@@ -10,7 +10,7 @@ export async function fetchNewProducts ({setProducts,currentPage,setHasEndingPos
 }
 
 export async function loadMoreProducts ({loading,hasEndingPosts, setLoading, setProducts,currentPage, setHasEndingPosts}){
-    await new Promise(resolve => setTimeout(resolve, 1200)); 
+    await new Promise(resolve => setTimeout(resolve, 10)); 
     if (loading || hasEndingPosts) return; 
 
     setLoading(true);
