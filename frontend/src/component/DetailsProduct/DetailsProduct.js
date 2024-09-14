@@ -18,14 +18,27 @@ function DetailsProductPanel({productId}) {
         try {
             let responseCart = await fetchCartCurrent( user.id);
             if(!responseCart){
+                console.log("creaeting cart")
                 responseCart = await postCart(user.id);
             }
 
             console.log(responseCart.date_created)
+
+            const date = new Date(responseCart.date_created);
             
-            /*
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+
+            
+            const cart_date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            console.log(cart_date)
+            
             const result = await postItem(productId, user.id,cart_date)
-            console.log(result)*/
+            console.log(result)
         
         } catch (error) {
           console.error('Error adding item to cart:', error);

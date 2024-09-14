@@ -69,13 +69,16 @@ router.get('/cart/user/current', (req, res) => {
 });
 
 
-router.post('/cart/user', (req,res)=>{
+router.post('/cart', (req,res)=>{
   const {id_user} = req.body;
-  const date = new Date().toISOString().split('T')[0];
+  const date = new Date()
   const query = "insert into cart(id_user, date_created) values(?,?)"
   db.query(query, [id_user,date],(err,results)=>{
     if(err){
-      res.status(500).send("error in query")
+      res.status(500).send("error in query");
+      console.log(err);
+      console.log("jsndfkjafskjansfdkjasf");
+
       return;
     }
     console.log("me nataasdfnasdfasjdfakjfdn"+results)
