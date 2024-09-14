@@ -64,7 +64,8 @@ router.get('/cart/user/current', (req, res) => {
       return;
     }
     console.log("Current cart:", results[0]);
-    res.json(results[0]); // Send the first result if expecting a single current cart
+    const cart = results[0];
+    res.json(cart)
   });
 });
 

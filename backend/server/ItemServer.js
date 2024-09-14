@@ -44,7 +44,7 @@ router.get('/item', (req, res) => {
 router.post('/item', (req,res)=>{
   const {id_product, id_user, cart_date} = req.body;
   console.log("+==================================")
-  console.log(req.body)
+  console.log("this is body::::::"+req.body)
   console.log("+==================================")
   
   const query = 'INSERT INTO item (id, id_user, cart_date, quantity) VALUES (?, ?, ?, 1)';
@@ -60,5 +60,23 @@ router.post('/item', (req,res)=>{
     res.json(results)
   })
 })
+
+
+
+router.get('/item/cart', (req, res) => {
+  const { id_user,date_created } = req.query; 
+  const query = "SELECT * FROM item WHERE id_user = ? AND cart_date = ?";
+  console.log("item by cartt" + id_user + date_created)
+  db.query(query, [id_user, date_created], (err, results) => {
+    if (err) {
+      res.status(500).send("Error in query");
+      console.error(err);
+      return;
+    }
+    console.log("results\n:"+ results+"*****************************************");
+    res.json(results);
+  });
+});
+
 
 module.exports=router;

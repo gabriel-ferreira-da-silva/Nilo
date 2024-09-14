@@ -34,7 +34,7 @@ function Navbarheader(){
                 
                 <Nav.Link href="/productlist">Home</Nav.Link>
                 <Nav.Link href="/product/add">Add</Nav.Link>
-                <Nav.Link href="#action2">about</Nav.Link>
+                <Nav.Link href="/cart"> My Cart</Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                 <Form.Control
