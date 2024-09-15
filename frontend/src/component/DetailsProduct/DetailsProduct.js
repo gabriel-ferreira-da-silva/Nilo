@@ -7,6 +7,8 @@ import { getUser } from '../../utils/AuthUtils';
 import { postCart,fetchCartCurrent } from '../../services/CartService';
 import { postItem } from '../../services/ItemService';
 import { formatDate } from '../../utils/commomUtils';
+
+
 function DetailsProductPanel({productId}) {
     const navigate = useNavigate();
     const [user,setUser] = useState(getUser())

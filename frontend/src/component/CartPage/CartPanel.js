@@ -5,6 +5,9 @@ import { fetchItemsByCart } from "../../services/ItemService";
 import { formatDate } from "../../utils/commomUtils";
 import { fetchProduct } from "../../services/ProductService";
 import { putCartAsSold } from "../../services/CartService";
+import CartCard from "../comom/cartCard/CartCard";
+import styles from '../comom/cartCard/CartCard.module.css'
+
 function CartPanel() {
   const [user, setUser] = useState(getUser()); 
   const [cart, setCart] = useState(""); 
@@ -73,20 +76,19 @@ function CartPanel() {
 
   return (
     <div>
-      <p>Cart ID: {cart.id_user}</p>
-      <p>Date Created: {cart.date_created}</p>
-      <p>Date Sold: {cart.date_sold ? cart.date_sold : "Not sold yet"}</p>
-    
-      <div>
+      
+      <div className={styles.panel}>
+        <div className={styles.cartId}>{cart.id_user +"-"+cart.date_created}</div>
         {products.map((item,index)=>(
-          <div>
-            <p>{item.id}</p>
-            <p>{item.name}</p>
-            <p>{item.image_url}</p>
+          <div key={index}>
+            <CartCard
+              product={item}
+            ></CartCard>
           </div>
         ))}
+        <button className={styles.button} onClick={()=> buyCart()}> buy cart </button>
       </div>
-      <button onClick={()=> buyCart()}> buy cart </button>
+      
     </div>
 
   );
