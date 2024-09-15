@@ -76,9 +76,9 @@ function CartPanel() {
 
   return (
     <div>
-      
       <div className={styles.panel}>
-        <div className={styles.cartId}>{cart.id_user +"-"+cart.date_created}</div>
+        <h1>Cart</h1>
+        <div className={styles.cartId}>{cart.id_user +"-git "+cart.date_created}</div>
         {products.map((item,index)=>(
           <div key={index}>
             <CartCard

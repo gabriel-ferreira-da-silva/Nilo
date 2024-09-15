@@ -1,0 +1,19 @@
+.name{
+    color:white;
+    font-size: larger;
+    font-weight: 4px;
+}
+
+.username{
+    color:white;
+    font-size: small;
+}
+
+.panel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Pushes elements apart */
+    width: 100%; /* Ensures it spans the entire width of the parent container */
+    padding: 0 20px; 
+}

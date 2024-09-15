@@ -1,3 +1,6 @@
+
+USE NILODB;
+
 INSERT INTO cart (id_user, date_created) 
 VALUES (1,'2024-07-14 09:00:00');
 

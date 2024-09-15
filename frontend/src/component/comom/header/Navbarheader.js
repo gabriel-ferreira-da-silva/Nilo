@@ -5,21 +5,17 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { getUser } from "../../../utils/AuthUtils";
+import styles from './Navbarheader.module.css'
 
 function Navbarheader(){
     const [user,setUser] = useState(getUser());
     return (
         <>
         <Navbar bg="primary" variant="dark">
-        <Container>
-            <Navbar.Brand  className="justify-content-start" href="#home">NILO</Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-                <a>{"@"+ user.username}</a>
-            </Navbar.Text>
-            </Navbar.Collapse>
-        </Container>
+            <div className={styles.panel}>
+                <div className={styles.name}>NILO</div>
+                <div className={styles.username}> {"@"+user.username} </div>
+            </div>
         </Navbar>
 
         <Navbar bg="light" variant="light" style={{ maxHeight: '50px' }}>

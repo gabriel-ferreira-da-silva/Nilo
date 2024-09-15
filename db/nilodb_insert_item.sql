@@ -1,3 +1,6 @@
+
+USE NILODB;
+
 INSERT INTO item (id, id_user, cart_date, quantity) 
 VALUES (1,1,'2024-07-14 09:00:00', 4);
 
