@@ -3,10 +3,13 @@
 echo "Setting up the database..."
 cd db || exit
 
-sudo mysql -u root  < nilodb_create.sql
-mysql -u NILOuser -p NILOuser NILODB < nilodb_create.sql
-mysql -u NILOuser -p NILOuser NILODB < nilodb_insert_product.sql
-mysql -u NILOuser -p NILOuser NILODB < nilodb_insert_manager.sql
+
+sudo mysql -u root < nilodb_create.sql
+sudo mysql -u root < nilodb_insert_product.sql
+sudo mysql -u root < nilodb_insert_manager.sql
+sudo mysql -u root < nilodb_insert_user.sql
+sudo mysql -u root < nilodb_insert_cart.sql
+sudo mysql -u root < nilodb_insert_item.sql
 
 cd ..
 
