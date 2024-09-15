@@ -32,23 +32,30 @@ db.connect((err) => {
 
 router.post('/login/admin', (req, res) => {
   const {username,password} = req.body;
+  console.log("000000asfjdlkajsdçfaklsdfjçalksdfkajsdfçkjasçlkdfjçslkdfjlçksdjfçlkjdsfçlajsçfdlkj")
+
   if(!username || !password){
+    console.log("000000000000000000000")
     return res.status(400).json({message: "username or password are empty"})
   }
 
   const query = "select * from managers where username = ?";
   db.query(query, [username], async (err, results) => {
     if (err) {
+      console.log("11111111111111111")
+
       return res.status(500).json({ message: 'Database error', error: err });
     }
     if (results.length === 0) {
+      console.log("22222222222222")
       return res.status(400).json({ message: 'Invalid username or password' });
     }
     const user = results[0];
-    if (password!=user.password) 
+    if (password!=user.password){
+      console.log("33333")
       return res.status(400).json({ message: 'Invalid username or password' });
-    
-    const token = jwt.sign({ userId: user.id, username: user.username,role:"admin" }, JWT_SECRET, { expiresIn: '1h' });
+    }
+    const token = jwt.sign({ id: user.id, username: user.username, email: user.email, name:user.name , role:"admin" }, JWT_SECRET, { expiresIn: '1h' });
     console.log(token)
     return res.json({ token });
   });
@@ -56,6 +63,7 @@ router.post('/login/admin', (req, res) => {
 
 
 router.post('/login/user', (req, res) => {
+  console.log("000000asfjdlkajsdçfaklsdfjçalksdfkajsdfçkjasçlkdfjçslkdfjlçksdjfçlkjdsfçlajsçfdlkj")
   const {username,password} = req.body;
   if(!username || !password){
     return res.status(400).json({message: "username or password are empty"})

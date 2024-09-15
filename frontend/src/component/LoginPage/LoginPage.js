@@ -4,15 +4,26 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 async function loginUser(credentials) {
- return fetch('http://localhost:4000/auth/login/user', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
-}
+  return fetch('http://localhost:4000/auth/login/user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+
+ async function loginAdmin(credentials) {
+  return fetch('http://localhost:4000/auth/login/admin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
 
 export default function LoginPage({ setToken }) {
     const [username, setUserName] = useState('');
