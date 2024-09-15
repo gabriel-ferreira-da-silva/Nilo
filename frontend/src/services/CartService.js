@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { formatDate } from '../utils/commomUtils';
 
 
 export const fetchAllCarts = async () => {
@@ -27,10 +28,10 @@ export const fetchCartCurrent = async (userId) => {
 
 
 
-
 export const postCart = async (userId) => {
   try {
-    const response = await axios.post(`http://localhost:4000/api/cart`, {id_user:userId});
+    const date = new Date();
+    const response = await axios.post(`http://localhost:4000/api/cart`, {id_user:userId, date_created:formatDate(date)});
     console.log(response.data)
     return response.data;
   } catch (error) {
@@ -38,3 +39,17 @@ export const postCart = async (userId) => {
     throw error;
   }
 };
+
+
+
+export const putCartAsSold = async (userId,dateCreated,dateSold) => {
+  try {
+    const response = await axios.put(`http://localhost:4000/api/cart/sell`, {id_user:userId,date_created:dateCreated,date_sold:dateSold});
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.error('Error posting product:', error);
+    throw error;
+  }
+};
+

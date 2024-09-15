@@ -71,10 +71,9 @@ router.get('/cart/user/current', (req, res) => {
 
 
 router.post('/cart', (req,res)=>{
-  const {id_user} = req.body;
-  const date = new Date()
+  const {id_user,date_created} = req.body;
   const query = "insert into cart(id_user, date_created) values(?,?)"
-  db.query(query, [id_user,date],(err,results)=>{
+  db.query(query, [id_user,date_created],(err,results)=>{
     if(err){
       res.status(500).send("error in query");
       console.log(err);
@@ -86,5 +85,24 @@ router.post('/cart', (req,res)=>{
     res.json(results)
   })
 })
+
+router.put('/cart/sell',(req,res)=>{
+  const {id_user,date_created,date_sold} = req.body;
+  console.log(req.body)
+  const query = 'UPDATE cart set date_sold = ? where id_user=? and date_created=?'
+  db.query(query,[date_sold, id_user,date_created],(err,results)=>{
+    if(err){
+      console.log(err)
+      res.status(500).send("cart/sell route error")
+      return;
+    }
+    
+    if (results.affectedRows === 0) {
+      res.status(404).send('Product not found');
+      return;
+    }
+    res.json(results);
+  })
+});
 
 module.exports=router;
