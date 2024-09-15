@@ -5,7 +5,7 @@ import ProductListPage from './pages/ProductListPage';
 import AddProductPage from './pages/AddProductPage';
 import EditProductPage from './pages/EditProductPage';
 import DetailsProductPage from './pages/DetailsProductPage';
-import LoginPage from './component/LoginPage/LoginPage';
+import LoginPage from './pages/LoginPage';
 
 import { getToken,setToken } from './utils/AuthUtils';
 
